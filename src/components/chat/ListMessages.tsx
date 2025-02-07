@@ -1,33 +1,17 @@
 "use client";
 
 import { useMessage } from "@/store/messages";
+import Message from "./Message";
 
 const ListMessages = () => {
-  const messages = useMessage((state) => state.messages)
+  const messages = useMessage((state) => state.messages);
   return (
     <>
       <div className="flex-1 flex flex-col p-5 overflow-y-auto">
         <div className="flex-1">
           <div className="space-y-5">
-            {messages.map((value,index) => {
-              return (
-                <div key={index} className="flex items-start gap-x-2">
-                  <div className="h-9 w-9 rounded-full bg-emerald-500" />
-                  <div className="flex-1">
-                    <div className="flex items-center gap-x-2">
-                      <p className="font-semibold">John Wick</p>
-                      <p className="text-xs text-muted-foreground">
-                        {new Date().toDateString()}
-                      </p>
-                    </div>
-                    <p className="opacity-80">
-                      TEXT for display_name and avatar_url) Let me know if you
-                      need to access different fields from the
-                      raw_user_meta_data or if you need any other adjustments!
-                    </p>
-                  </div>
-                </div>
-              );
+            {messages.map((value, index) => {
+              return <Message key={index} message={value} />;
             })}
           </div>
         </div>
