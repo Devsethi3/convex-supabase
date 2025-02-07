@@ -1,14 +1,17 @@
 "use client";
 
+import { useMessage } from "@/store/messages";
+
 const ListMessages = () => {
+  const messages = useMessage((state) => state.messages)
   return (
     <>
       <div className="flex-1 flex flex-col p-5 overflow-y-auto">
         <div className="flex-1">
           <div className="space-y-5">
-            {[1, 2, 3, 4, 5, 6].map((value) => {
+            {messages.map((value,index) => {
               return (
-                <div key={value} className="flex items-start gap-x-2">
+                <div key={index} className="flex items-start gap-x-2">
                   <div className="h-9 w-9 rounded-full bg-emerald-500" />
                   <div className="flex-1">
                     <div className="flex items-center gap-x-2">
