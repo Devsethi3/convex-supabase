@@ -7,7 +7,6 @@ import { v4 as uuidv4 } from "uuid";
 import { useUser } from "@/store/user";
 import { type Imessage, useMessage } from "@/store/messages";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { Send } from "lucide-react";
 
 export default function ChatInput() {
