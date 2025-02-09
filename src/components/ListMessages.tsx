@@ -132,17 +132,17 @@ export default function ListMessages() {
         <div className="absolute bottom-20 w-full">
           {notification ? (
             <div
-              className="w-36 mx-auto bg-indigo-500 p-1 rounded-md cursor-pointer"
+              className="w-fit mx-auto bg-indigo-500 px-3 py-1.5 text-white rounded-md cursor-pointer"
               onClick={scrollDown}
             >
               <h1>New {notification} messages</h1>
             </div>
           ) : (
             <div
-              className="w-10 h-10 bg-blue-500 rounded-full justify-center items-center flex mx-auto border cursor-pointer hover:scale-110 transition-all"
+              className="w-10 h-10 bg-secondary rounded-full justify-center items-center flex mx-auto border cursor-pointer hover:scale-110 transition-all"
               onClick={scrollDown}
             >
-              <ArrowDown />
+              <ArrowDown size={18} className="opacity-80" />
             </div>
           )}
         </div>

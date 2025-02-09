@@ -30,7 +30,7 @@ export default function Message({ message }: { message: Imessage }) {
           alt={displayName}
           width={40}
           height={40}
-          className="rounded-full ring-2"
+          className="rounded-full p-0.5 border-2 border-primary"
           priority={false}
           onError={(e) => {
             const target = e.target as HTMLImageElement;
@@ -41,19 +41,19 @@ export default function Message({ message }: { message: Imessage }) {
       <div className="flex-1 min-w-0">
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-1 overflow-hidden">
-            <h1 className="font-bold truncate">{displayName}</h1>
-            <span className="text-sm text-gray-400 flex-shrink-0">
+            <h1 className="font-semibold opacity-90 tracking-normal truncate">{displayName}</h1>
+            <span className="text-sm text-muted-foreground flex-shrink-0">
               {messageDate}
             </span>
             {message.is_edit && (
-              <span className="text-sm text-gray-400 flex-shrink-0">
+              <span className="text-sm text-muted-foreground flex-shrink-0">
                 edited
               </span>
             )}
           </div>
           {isOwner && <MessageMenu message={message} />}
         </div>
-        <p className="text-gray-300 break-words">{message.text}</p>
+        <p className="opacity-80 break-words">{message.text}</p>
       </div>
     </div>
   );
@@ -75,7 +75,7 @@ const MessageMenu = ({ message }: { message: Imessage }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="focus:outline-none">
-        <MoreHorizontal className="h-5 w-5 text-gray-400 hover:text-gray-300 transition-colors" />
+        <MoreHorizontal className="h-5 w-5 text-muted-foreground hover:text-gray-300 transition-colors" />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-40">
         <DropdownMenuLabel>Message Actions</DropdownMenuLabel>
