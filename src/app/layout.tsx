@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Questrial } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/provider/theme-provider";
-import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "@/providers/theme-provider";
+import { Toaster } from "sonner";
 
-const font = Questrial({ weight: ["400"] });
+const font = Questrial({ weight: ["400"], subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -26,7 +26,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
-          <Toaster />
+          <Toaster position="top-center" />
         </ThemeProvider>
       </body>
     </html>

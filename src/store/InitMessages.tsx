@@ -1,8 +1,8 @@
 "use client";
+import { LIMIT_MESSAGE } from "@/constant";
 import React, { useEffect, useRef } from "react";
-
 import { Imessage, useMessage } from "./messages";
-import { LIMIT_MESSAGE } from "@/lib/constant";
+
 
 export default function InitMessages({ messages }: { messages: Imessage[] }) {
   const initState = useRef(false);

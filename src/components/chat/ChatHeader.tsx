@@ -1,15 +1,16 @@
 "use client";
-
+import React from "react";
 import { supabaseBrowser } from "@/lib/supabase/browser";
+import { User } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
+import ChatPresence from "./ChatPresence";
 import { ModeToggle } from "../ModeToggle";
-import { User } from "@supabase/supabase-js";
 
-const ChatHeader = ({ user }: { user: User | undefined }) => {
+export default function ChatHeader({ user }: { user: User | undefined }) {
   const router = useRouter();
 
-  const handleLoginWithGoogle = () => {
+  const handleLoginWithGithub = () => {
     const supabase = supabaseBrowser();
     supabase.auth.signInWithOAuth({
       provider: "github",
@@ -26,25 +27,21 @@ const ChatHeader = ({ user }: { user: User | undefined }) => {
   };
 
   return (
-    <div>
-      <div className="h-20">
-        <div className="p-5 border-b flex items-center justify-between h-full">
-          <div>
-            <h1 className="text-xl font-bold">Daily Chat</h1>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <ModeToggle />
-            {user ? (
-              <Button onClick={handleLogout} variant="secondary">Logout</Button>
-            ) : (
-              <Button onClick={handleLoginWithGoogle}>Login</Button>
-            )}{" "}
-          </div>
+    <div className="h-20">
+      <div className="p-5 border-b flex items-center justify-between h-full">
+        <div>
+          <h1 className="text-xl font-bold">Daily Chat</h1>
+          <ChatPresence />
+        </div>
+        <div className="flex items-center gap-x-3">
+          <ModeToggle />
+          {user ? (
+            <Button onClick={handleLogout}>Logout</Button>
+          ) : (
+            <Button onClick={handleLoginWithGithub}>Login</Button>
+          )}
         </div>
       </div>
     </div>
   );
-};
-
-export default ChatHeader;
+}

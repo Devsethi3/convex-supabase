@@ -1,9 +1,8 @@
-import { Suspense } from "react";
-import ListMessages from "./ListMessages";
+import { LIMIT_MESSAGE } from "@/constant";
 import { supabaseServer } from "@/lib/supabase/server";
-import { Database } from "@/types/database.types";
-import InitMessages from "@/store/InitMessage";
-import { LIMIT_MESSAGE } from "@/lib/constant";
+import { Suspense } from "react";
+import ListMessages from "../ListMessages";
+import InitMessages from "@/store/InitMessages";
 
 const ChatMessages = async () => {
   const supabase = await supabaseServer();
@@ -18,8 +17,6 @@ const ChatMessages = async () => {
     console.error("Failed to fetch messages:", error);
     return <div>Error loading messages</div>;
   }
-
-  console.log(messages);
 
   return (
     <Suspense fallback={<div>Loading...</div>}>

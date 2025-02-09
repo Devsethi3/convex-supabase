@@ -1,5 +1,5 @@
+import { LIMIT_MESSAGE } from "@/constant";
 import { create } from "zustand";
-import { LIMIT_MESSAGE } from "@/lib/constant";
 
 export type Imessage = {
   created_at: string;
@@ -49,21 +49,19 @@ export const useMessage = create<MessageState>()((set) => ({
     })),
   setActionMessage: (message) => set(() => ({ actionMessage: message })),
   optimisticDeleteMessage: (messageId) =>
-    set((state) => {
-      return {
-        messages: state.messages.filter((message) => message.id !== messageId),
-      };
-    }),
+    set((state) => ({
+      messages: state.messages.filter((message) => message.id !== messageId),
+    })),
   optimisticUpdateMessage: (updateMessage) =>
-    set((state) => {
-      return {
-        messages: state.messages.filter((message) => {
-          if (message.id === updateMessage.id) {
-            (message.text = updateMessage.text),
-              (message.is_edit = updateMessage.is_edit);
-          }
-          return message;
-        }),
-      };
-    }),
+    set((state) => ({
+      messages: state.messages.map((message) =>
+        message.id === updateMessage.id
+          ? {
+              ...message,
+              text: updateMessage.text,
+              is_edit: updateMessage.is_edit,
+            }
+          : message
+      ),
+    })),
 }));
